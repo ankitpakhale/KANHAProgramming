@@ -1,7 +1,6 @@
-// Updated QuestionsForm component with red cross button inside badge
-
 import React, { useState } from 'react';
 import Select from 'react-select';
+import axios from 'axios';
 
 export default function QuestionsForm() {
   const [difficulty, setDifficulty] = useState(null);
@@ -32,6 +31,7 @@ export default function QuestionsForm() {
   ];
 
   const topicOptions = [
+    { value: 'all', label: 'All' },
     { value: 'oop', label: 'Object-Oriented Programming' },
     { value: 'loops', label: 'Loops' },
     {
@@ -93,6 +93,45 @@ export default function QuestionsForm() {
     } else {
       setSelectedTopics((prev) => prev.filter((_, i) => i !== index));
     }
+  };
+
+  const handleSubmit = () => {
+    // Prepare data to send as form data
+    const formData = new FormData();
+
+    // Filter out "other" from the selected languages and topics
+    const filteredLanguages = [
+      ...selectedLanguages.map((lang) => lang.value),
+      ...customLanguages,
+    ].filter((lang) => lang !== 'other'); // Remove 'other' if present
+
+    const filteredTopics = [
+      ...selectedTopics.map((topic) => topic.value),
+      ...customTopics,
+    ].filter((topic) => topic !== 'other'); // Remove 'other' if present
+
+    // Append filtered data to FormData
+    formData.append('difficulty_level', difficulty ? difficulty.value : null);
+    formData.append('programming_language', filteredLanguages.join(',')); // Join the languages into a comma-separated string
+    formData.append('topics', filteredTopics.join(',')); // Same for topics
+
+    console.log('➡ formData:', formData);
+
+    // Make API call to generate questions using Axios
+    axios
+      .post('http://localhost:8080/generate-questions', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data', // Ensure the proper Content-Type for form data
+        },
+      })
+      .then((response) => {
+        // Handle success
+        console.log('Questions generated:', response.data);
+      })
+      .catch((error) => {
+        // Handle error
+        console.error('Error generating questions:', error);
+      });
   };
 
   // Render removable badges with cross buttons
@@ -269,6 +308,18 @@ export default function QuestionsForm() {
                 ' None'
               )}
             </span>
+          </div>
+        </div>
+        {/* Submit Button */}
+        <div className="mb-3 row">
+          <div className="col-sm-12 text-center">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={handleSubmit}
+            >
+              Submit
+            </button>
           </div>
         </div>
       </form>
