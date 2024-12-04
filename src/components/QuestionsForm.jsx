@@ -1,3 +1,5 @@
+// Updated QuestionsForm component with red cross button inside badge
+
 import React, { useState } from 'react';
 import Select from 'react-select';
 
@@ -76,7 +78,7 @@ export default function QuestionsForm() {
     }
   };
 
-  // Handle removals
+  // Handle removals (for custom and regular selections)
   const handleRemoveLanguage = (index, isCustom) => {
     if (isCustom) {
       setCustomLanguages((prev) => prev.filter((_, i) => i !== index));
@@ -93,7 +95,7 @@ export default function QuestionsForm() {
     }
   };
 
-  // Render removable badges
+  // Render removable badges with cross buttons
   const renderRemovableBadges = (
     selections,
     customInputs,
@@ -106,7 +108,7 @@ export default function QuestionsForm() {
           {sel.label}
           <button
             type="button"
-            className="btn-close btn-close-white position-absolute end-0 me-1"
+            className="btn-close position-absolute top-0 end-0 mt-1 me-1 text-danger"
             aria-label="Close"
             onClick={() => removeHandler(index, isCustom)}
           ></button>
@@ -117,7 +119,7 @@ export default function QuestionsForm() {
           {input}
           <button
             type="button"
-            className="btn-close btn-close-white position-absolute end-0 me-1"
+            className="btn-close position-absolute top-0 end-0 mt-1 me-1 text-danger"
             aria-label="Close"
             onClick={() => removeHandler(index, true)}
           ></button>
@@ -239,16 +241,12 @@ export default function QuestionsForm() {
             <span className="values">
               {selectedLanguages.length > 0 || customLanguages.length > 0 ? (
                 <>
-                  {selectedLanguages.map((lang, index) => (
-                    <span key={index} className="badge bg-primary ms-2">
-                      {lang.label}
-                    </span>
-                  ))}
-                  {customLanguages.map((lang, index) => (
-                    <span key={index} className="badge bg-secondary ms-2">
-                      {lang}
-                    </span>
-                  ))}
+                  {renderRemovableBadges(
+                    selectedLanguages,
+                    customLanguages,
+                    handleRemoveLanguage,
+                    false
+                  )}
                 </>
               ) : (
                 ' None'
@@ -260,16 +258,12 @@ export default function QuestionsForm() {
             <span className="values">
               {selectedTopics.length > 0 || customTopics.length > 0 ? (
                 <>
-                  {selectedTopics.map((topic, index) => (
-                    <span key={index} className="badge bg-primary ms-2">
-                      {topic.label}
-                    </span>
-                  ))}
-                  {customTopics.map((topic, index) => (
-                    <span key={index} className="badge bg-secondary ms-2">
-                      {topic}
-                    </span>
-                  ))}
+                  {renderRemovableBadges(
+                    selectedTopics,
+                    customTopics,
+                    handleRemoveTopic,
+                    false
+                  )}
                 </>
               ) : (
                 ' None'

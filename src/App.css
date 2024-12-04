@@ -117,7 +117,6 @@ p {
 .summary-item {
     display: flex;
     justify-content: space-between;
-    /* Align labels and values to the left and right */
     width: 100%;
     margin-bottom: 10px;
 }
