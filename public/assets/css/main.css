@@ -1,0 +1,219 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Slab:wght@300;400;500;600;700;800;900&family=Josefin+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Arrows:wght@400..700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+:root {
+  --background-color-light-1: #e0eafc;
+  --background-color-light-2: #cfdef3;
+
+  --background-color: #F5F5F5;
+  --input-background: #F9F9F9;
+
+  --primary-color: #1A3D6A;
+  --secondary-color: #00A86B;
+  --accent-color: #FF6F00;
+  --text-color: #333333;
+  --header-color: #4A4A4A;
+  --error-color: #D32F2F;
+  --success-color: #4CAF50;
+  --button-background: var(--secondary-color);
+  --button-text-color: #FFFFFF;
+  --link-color: var(--accent-color);
+  --link-hover-color: #FF9100;
+  --border-color: #CCCCCC;
+  --font-family: "Josefin Sans",
+    sans-serif;
+  --font-size-base: 16px;
+  --font-size-small: 14px;
+  --font-size-large: 18px;
+  --padding-base: 16px;
+  --margin-base: 16px;
+}
+
+:root .dark-theme {
+  --background-color-light-1: #121212;
+  --background-color-light-2: #1c1c1c;
+
+  --background-color: #1E1E1E;
+  --input-background: #333333;
+
+  --primary-color: #1A3D6A;
+  --secondary-color: #00A86B;
+  --accent-color: #FF6F00;
+  --text-color: #E0E0E0;
+  --header-color: #B0B0B0;
+  --error-color: #FF5733;
+  --success-color: #4CAF50;
+  --button-background: var(--secondary-color);
+  --button-text-color: #FFFFFF;
+  --link-color: var(--accent-color);
+  --link-hover-color: #FF9100;
+  --border-color: #333333;
+  --font-family: "Josefin Sans",
+    sans-serif;
+  --font-size-base: 16px;
+  --font-size-small: 14px;
+  --font-size-large: 18px;
+  --padding-base: 16px;
+  --margin-base: 16px;
+}
+
+/* ----------------- SCROLLBAR START ------------------ */
+/* For webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--body-text);
+  border-radius: 10px;
+  transition: background 0.3s ease-in-out;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--heading-black);
+  transition: background 0.3s ease-in-out;
+}
+
+.dark-theme ::-webkit-scrollbar-thumb {
+  background: var(--body-text);
+  border-radius: 10px;
+  transition: background 0.3s ease-in-out;
+}
+
+/* Handle on hover */
+.dark-theme ::-webkit-scrollbar-thumb:hover {
+  background: var(--prink);
+  transition: background 0.3s ease-in-out;
+}
+
+/* ----------------- SCROLLBAR END ------------------ */
+
+
+body {
+  font-family: var(--font-family);
+  background: linear-gradient(to right, var(--background-color-light-1), var(--background-color-light-2));
+  color: var(--text-color);
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Heading Styling */
+.heading {
+  font-family: "Edu AU VIC WA NT Arrows", cursive;
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  letter-spacing: 1.5px;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+/* Form Container */
+.col-8 {
+  background: var(--input-background);
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+}
+
+/* Form Labels */
+label {
+  font-weight: bold;
+  color: var(--text-color);
+  font-size: var(--font-size-small);
+}
+
+/* Inputs and Selects */
+.react-select-container {
+  font-size: var(--font-size-small);
+}
+
+input.form-control {
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 10px;
+  font-size: var(--font-size-small);
+  transition: border 0.2s ease;
+}
+
+input.form-control:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Buttons */
+button,
+.btn {
+  background-color: var(--primary-color);
+  color: var(--button-text-color);
+  border: none;
+  padding: 10px 20px;
+  font-size: var(--font-size-base);
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 20px;
+  display: block;
+  width: 100%;
+  /* Full-width button */
+}
+
+button:hover,
+.btn:hover {
+  background-color: var(--accent-color);
+  transform: scale(1.05);
+}
+
+/* Summary Section */
+h5 {
+  margin-top: 20px;
+  color: var(--header-color);
+  text-decoration: underline;
+}
+
+p {
+  margin: 10px 0;
+  font-size: var(--font-size-small);
+  color: var(--text-color);
+}
+
+/* Container for summary section */
+.summary-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.summary-item strong {
+  font-weight: bold;
+}
+
+.summary-item .values {
+  text-align: right;
+  color: var(--text-color);
+  font-size: var(--font-size-small);
+}
