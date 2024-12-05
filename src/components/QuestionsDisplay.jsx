@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import ToastNotification, { showToast } from '../utils/ToastNotification';
 
 export default function QuestionsDisplay({ qData }) {
   const questionsData = qData.payload;
 
   const [userAnswers, setUserAnswers] = useState({});
   const [score, setScore] = useState(null);
+  const [codeSubmit, setCodeSubmit] = useState(false);
 
   const handleOptionChange = (
     difficultyLevel,
@@ -37,6 +39,8 @@ export default function QuestionsDisplay({ qData }) {
     }
 
     setScore(localScore);
+    setCodeSubmit(true);
+    showToast('Answers submitted!', 'success');
   };
 
   return (
@@ -74,6 +78,7 @@ export default function QuestionsDisplay({ qData }) {
                               userAnswers[difficultyLevel]?.[index] === option
                             }
                             style={{ marginRight: '10px' }}
+                            disabled={codeSubmit}
                           />
                           <label
                             className="form-check-label"
@@ -93,7 +98,11 @@ export default function QuestionsDisplay({ qData }) {
         return null; // do not render if there are no questions for the difficulty level
       })}
       {/* submit button */}
-      <button className="btn btn-success w-100" onClick={handleSubmit}>
+      <button
+        className="btn btn-success w-100"
+        onClick={handleSubmit}
+        disabled={codeSubmit}
+      >
         Submit
       </button>
       {/* score display */}
@@ -102,6 +111,8 @@ export default function QuestionsDisplay({ qData }) {
           <strong>Your Score: {score}</strong>
         </div>
       )}
+      {/* Toast Notification */}
+      <ToastNotification />
     </div>
   );
 }
