@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ToastNotification, { showToast } from '../utils/ToastNotification';
+import MCQQuestion from './MCQQuestion';
 
 export default function QuestionsDisplay({ qData }) {
   const questionsData = qData.payload;
@@ -26,7 +27,7 @@ export default function QuestionsDisplay({ qData }) {
   const handleSubmit = () => {
     let localScore = 0;
 
-    // calculate score only for 'easy' type questions
+    // Calculate score only for 'easy' type questions
     if (questionsData.easy) {
       questionsData.easy.forEach((question, index) => {
         if (
@@ -40,64 +41,61 @@ export default function QuestionsDisplay({ qData }) {
 
     setScore(localScore);
     setCodeSubmit(true);
-    showToast('Answers submitted!', 'success');
+    showToast('Answers submitted successfully!', 'success');
+  };
+
+  const renderQuestion = (question, difficultyLevel, index) => {
+    // TODO: convert this into if else statements instead of switch
+    switch (question.q_type) {
+      case 'MCQ':
+        return (
+          <MCQQuestion
+            key={index}
+            question={question.question}
+            options={question.options}
+            difficultyLevel={difficultyLevel}
+            questionIndex={index}
+            selectedOption={userAnswers[difficultyLevel]?.[index]}
+            onOptionChange={handleOptionChange}
+            isDisabled={codeSubmit}
+          />
+        );
+
+      // add support for problem-solving questions or other types here
+      default:
+        return (
+          <li key={index} className="mb-4 p-3 border rounded bg-light">
+            <p className="fw-bold text-start mb-3">
+              {index + 1}. {question.question}
+            </p>
+            <p className="text-muted">
+              [Problem-solving question type not implemented]
+            </p>
+          </li>
+        );
+    }
   };
 
   return (
     <div className="container mt-4" style={{ maxWidth: '600px' }}>
-      {/* quiz title */}
       <h1 className="text-center text-success mb-4">Quiz</h1>
       {Object.keys(questionsData).map((difficultyLevel) => {
-        // show the difficulty section only if data exists
         if (questionsData[difficultyLevel]?.length > 0) {
           return (
             <div key={difficultyLevel} className="mb-4">
-              {/* difficulty title */}
               <h2 className="text-center text-dark mb-3">
                 {difficultyLevel.toUpperCase()}
               </h2>
               <ul className="list-unstyled">
-                {questionsData[difficultyLevel].map((question, index) => (
-                  <li key={index} className="mb-4 p-3 border rounded bg-light">
-                    <p className="fw-bold text-start mb-3">
-                      {index + 1}. {question.question}
-                    </p>
-                    <form>
-                      {question.options.map((option, i) => (
-                        <div className="form-check text-start mb-2" key={i}>
-                          <input
-                            className="form-check-input"
-                            type="radio"
-                            name={`question-${difficultyLevel}-${index}`}
-                            value={option}
-                            id={`option-${difficultyLevel}-${index}-${i}`}
-                            onChange={() =>
-                              handleOptionChange(difficultyLevel, index, option)
-                            }
-                            checked={
-                              userAnswers[difficultyLevel]?.[index] === option
-                            }
-                            style={{ marginRight: '10px' }}
-                            disabled={codeSubmit}
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor={`option-${difficultyLevel}-${index}-${i}`}
-                          >
-                            {option}
-                          </label>
-                        </div>
-                      ))}
-                    </form>
-                  </li>
-                ))}
+                {questionsData[difficultyLevel].map((question, index) =>
+                  renderQuestion(question, difficultyLevel, index)
+                )}
               </ul>
             </div>
           );
         }
-        return null; // do not render if there are no questions for the difficulty level
+        return null;
       })}
-      {/* submit button */}
       <button
         className="btn btn-success w-100"
         onClick={handleSubmit}
@@ -105,13 +103,11 @@ export default function QuestionsDisplay({ qData }) {
       >
         Submit
       </button>
-      {/* score display */}
       {score !== null && (
         <div className="mt-4 alert alert-info text-center">
           <strong>Your Score: {score}</strong>
         </div>
       )}
-      {/* Toast Notification */}
       <ToastNotification />
     </div>
   );
@@ -119,6 +115,10 @@ export default function QuestionsDisplay({ qData }) {
 
 QuestionsDisplay.propTypes = {
   qData: PropTypes.shape({
-    payload: PropTypes.object.isRequired,
+    payload: PropTypes.shape({
+      easy: PropTypes.array,
+      medium: PropTypes.array,
+      hard: PropTypes.array,
+    }).isRequired,
   }).isRequired,
 };
