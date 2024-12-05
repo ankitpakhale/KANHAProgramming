@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Select from 'react-select';
 
 import fetchData from '../api/fetcher';
-import { API_ENDPOINTS } from '../utils/constants';
+import { API_ENDPOINTS, Q_DATA } from '../utils/constants';
 import QuestionsDisplay from './QuestionsDisplay';
 
 export default function QuestionsForm() {
@@ -12,7 +12,7 @@ export default function QuestionsForm() {
   const [selectedTopics, setSelectedTopics] = useState([]);
   const [customTopics, setCustomTopics] = useState([]);
 
-  const [questionsData, setQuestionsData] = useState(null); // State for API data
+  const [questionsData, setQuestionsData] = useState(Q_DATA); // State for API data
   // const [isLoading, setIsLoading] = useState(false); // State for loading
   const [error, setError] = useState(null); // State for errors
 
@@ -336,7 +336,7 @@ export default function QuestionsForm() {
         </div>
       </form>
 
-      {/* Showing question data to QuestionsDisplay component */}
+      {/* show question data if available */}
       {questionsData && (
         <div style={{ padding: '20px' }}>
           <QuestionsDisplay qData={questionsData} />

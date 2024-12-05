@@ -1,70 +1,138 @@
-# Getting Started with Create React App
+## **KANHA** – **Kustomized Assessment & NLP-based Hyperpersonalized Assessments**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### **Project Overview**
 
-## Available Scripts
+**KANHA** is an innovative, AI-powered platform that delivers personalized programming assessments to users. The frontend of KANHA allows users to interact with the backend to receive customized question sets, submit their answers, and view detailed feedback based on their performance. The platform uses Natural Language Processing (NLP) and AI to generate personalized assessments, providing a unique experience for every user.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+### **Core Features**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. **User-Driven Customization**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+   - **Inputs:**
+     - **Level of Difficulty**: Users can choose from Easy, Medium, or High difficulty levels for their assessments.
+     - **Programming Language**: The platform supports various programming languages such as Python, Java, C++, etc.
+     - **Topics**: Users can select specific topics or opt for "All" to receive a comprehensive assessment.
 
-### `npm test`
+2. **Question Generation**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   - The frontend fetches a customized question set from the backend based on user inputs:
+     - **Easy Level**: 20 multiple-choice questions (MCQs).
+     - **Medium Level**: 12 MCQs + 8 programming questions.
+     - **High Level**: 20 programming questions.
 
-### `npm run build`
+3. **Answer Submission**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   - Users can submit their answers for evaluation:
+     - For programming questions, users can input their code into the provided editor.
+     - MCQs are answered by selecting the correct options.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. **Answer Evaluation**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   - After submission, the frontend receives evaluation results from the backend. For programming questions, feedback is provided based on correctness, efficiency, and best practices. For MCQs, answers are marked as correct or incorrect, with feedback for improvement.
 
-### `npm run eject`
+5. **Streamlined Two-Step Process**
+   - **Step 1**: The user specifies the assessment parameters (difficulty, topics, language).
+   - **Step 2**: The user submits answers, and the frontend presents evaluation results, including feedback and suggestions for improvement.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### **Frontend Technology Stack**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. **Frontend Framework**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   - **React JS**: React is used to build the user interface. It allows for the creation of dynamic and interactive components, making the frontend highly responsive.
 
-## Learn More
+2. **UI Libraries**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   - **Bootstrap**: The application uses Bootstrap to implement responsive design components, ensuring the platform works seamlessly across all devices (desktop, tablet, mobile).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. **State Management**
 
-### Code Splitting
+   - **No State Management**: Currently, no external state management library (like Redux) is used. The application uses React’s built-in hooks such as `useState` and `useEffect` to manage the state.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+4. **API Integration**
 
-### Analyzing the Bundle Size
+   - **Axios**: Axios is used to make API requests to the backend. It is responsible for fetching the personalized question sets and submitting the user's answers to the backend for evaluation.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+5. **Authentication**
 
-### Making a Progressive Web App
+   - **No Authentication**: At present, there is no authentication mechanism in place for user login or user-specific access. All users have access to the same features.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+6. **Build and Deployment**
+   - **Netlify** will be used as the **staging server**, providing a platform for testing and review before production deployment.
+   - **AWS Amplify** will be used as the **production server**, offering robust hosting, continuous integration, and automatic scaling for a seamless live experience.
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### **System Workflow**
 
-### Deployment
+1. **User Journey**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+   - The user visits the platform and selects the assessment parameters (difficulty level, topics, and programming language).
+   - The frontend makes an API request to fetch the personalized question set based on the user’s inputs.
+   - The question set is displayed to the user.
+   - The user then submits answers, either by selecting options for MCQs or by writing code for programming questions.
+   - After submission, the frontend requests evaluation results from the backend, which are displayed to the user with feedback and suggestions.
 
-### `npm run build` fails to minify
+2. **Frontend Components**
+   - **Questionnaire Component**: This component is responsible for displaying the list of questions to the user based on their selected parameters (difficulty, programming language, and topics).
+   - **Answer Submission Component**: This allows users to input their answers for programming challenges or select answers for MCQs.
+   - **Evaluation Results Component**: Once the user submits their answers, this component shows the evaluation results, feedback, scores, and suggestions for further improvement.
+   - **Header and Footer**: The navigation components that provide easy access to the main features and ensure smooth navigation across the platform.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+### **Scalability and Performance**
+
+1. **Efficient Data Handling**
+
+   - The frontend ensures efficient data handling by only fetching the required data when necessary, reducing redundant API calls and improving overall performance.
+
+2. **Responsive Design**
+
+   - The application uses **Bootstrap** for building responsive UIs, ensuring that users have a consistent experience across various devices such as desktops, tablets, and smartphones.
+
+3. **Caching and Optimizations**
+   - Although caching has not been implemented yet, future improvements will optimize performance through lazy loading, deferred data loading, and caching strategies for repeated data.
+
+---
+
+### **Security and Privacy**
+
+1. **Data Encryption**
+
+   - All communications with the backend are secured using **HTTPS**, ensuring the protection of user data in transit.
+
+2. **User Privacy**
+
+   - Currently, there is no user authentication in place, but the platform ensures user privacy by following best practices and will be GDPR-compliant in future releases when authentication is implemented.
+
+3. **Access Control**
+   - The platform currently does not implement role-based access control (RBAC). Future releases will incorporate this feature to restrict access to sensitive information.
+
+---
+
+### **Future Enhancements**
+
+1. **Dynamic Difficulty Adjustment**
+
+   - The frontend will be enhanced to adjust the difficulty of the questions dynamically based on user performance, offering progressively more challenging questions.
+
+2. **Multi-Language Support**
+
+   - The platform plans to support additional programming languages, giving users the ability to select different languages for their coding challenges.
+
+3. **Plagiarism Detection**
+
+   - Future updates will include features for detecting plagiarism in code submissions by comparing them against a database of known solutions.
+
+4. **Gamification Features**
+   - The platform will introduce gamification elements such as leaderboards, achievements, and badges to boost user engagement and motivation.
+
+---
+
+### **Conclusion**
+
+The **KANHA** frontend is designed to offer users an intuitive and interactive experience when taking personalized programming assessments. Built with **React JS** and **Bootstrap**, the platform ensures responsiveness and ease of use across various devices. By integrating with the backend via **Axios**, the frontend seamlessly fetches question sets, submits answers, and displays detailed evaluation feedback. The platform is hosted on **Netlify** and **AWS Amplify**, ensuring reliable deployment and scalability. Future enhancements will improve the user experience by adding dynamic difficulty adjustment, authentication, and gamification features.
