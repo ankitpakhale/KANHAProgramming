@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
-import axios from 'axios';
+
+import fetchData from '../api/fetcher';
+import { API_ENDPOINTS } from '../utils/constants';
+import QuestionsDisplay from './QuestionsDisplay';
 
 export default function QuestionsForm() {
   const [difficulty, setDifficulty] = useState(null);
@@ -8,6 +11,10 @@ export default function QuestionsForm() {
   const [customLanguages, setCustomLanguages] = useState([]);
   const [selectedTopics, setSelectedTopics] = useState([]);
   const [customTopics, setCustomTopics] = useState([]);
+
+  const [questionsData, setQuestionsData] = useState(null); // State for API data
+  // const [isLoading, setIsLoading] = useState(false); // State for loading
+  const [error, setError] = useState(null); // State for errors
 
   // Existing options
   const difficultyOptions = [
@@ -61,7 +68,7 @@ export default function QuestionsForm() {
   const handleTopicsChange = (selectedOptions) =>
     setSelectedTopics(selectedOptions || []);
 
-  // Handle custom additions
+  // handle other programming language additions
   const handleAddCustomLanguage = () => {
     const input = document.getElementById('customLanguageInput');
     if (input.value.trim()) {
@@ -70,6 +77,7 @@ export default function QuestionsForm() {
     }
   };
 
+  // handle other topic additions
   const handleAddCustomTopic = () => {
     const input = document.getElementById('customTopicInput');
     if (input.value.trim()) {
@@ -78,7 +86,7 @@ export default function QuestionsForm() {
     }
   };
 
-  // Handle removals (for custom and regular selections)
+  // handle removals (for custom and regular selections)
   const handleRemoveLanguage = (index, isCustom) => {
     if (isCustom) {
       setCustomLanguages((prev) => prev.filter((_, i) => i !== index));
@@ -95,7 +103,7 @@ export default function QuestionsForm() {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // Prepare data to send as form data
     const formData = new FormData();
 
@@ -112,26 +120,30 @@ export default function QuestionsForm() {
 
     // Append filtered data to FormData
     formData.append('difficulty_level', difficulty ? difficulty.value : null);
-    formData.append('programming_language', filteredLanguages.join(',')); // Join the languages into a comma-separated string
-    formData.append('topics', filteredTopics.join(',')); // Same for topics
+    formData.append('programming_language', filteredLanguages.join(',')); // join the languages into a comma-separated string
+    formData.append('topics', filteredTopics.join(',')); // join the topics into a comma-separated string
 
-    console.log('➡ formData:', formData);
+    const endpoint = API_ENDPOINTS.GENERATE_QUESTIONS;
+    console.info(' ?????????????????????? endpoint: ', endpoint);
+    const headers = {};
 
-    // Make API call to generate questions using Axios
-    axios
-      .post('http://localhost:8080/generate-questions', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data', // Ensure the proper Content-Type for form data
-        },
-      })
-      .then((response) => {
-        // Handle success
-        console.log('Questions generated:', response.data);
-      })
-      .catch((error) => {
-        // Handle error
-        console.error('Error generating questions:', error);
-      });
+    // Headers are managed by fetchData based on the payload type
+    const responseData = await fetchData(endpoint, formData, headers);
+
+    // Handle the success case
+    if (responseData.response && responseData.error === null) {
+      // If responseData is not an error, process it
+      setQuestionsData(responseData.response);
+      console.log(
+        '>>>>>>>>>>>>>>>>>>>> Questions generated:',
+        responseData.response
+      );
+    } else {
+      // If responseData contains an error, handle the error
+      setError(responseData.error);
+      console.error('Error generating questions:', responseData.error);
+      console.info('>>>>>>>>>>>>>>>>>>>> error: ', error);
+    }
   };
 
   // Render removable badges with cross buttons
@@ -323,6 +335,13 @@ export default function QuestionsForm() {
           </div>
         </div>
       </form>
+
+      {/* Showing question data to QuestionsDisplay component */}
+      {questionsData && (
+        <div style={{ padding: '20px' }}>
+          <QuestionsDisplay qData={questionsData} />
+        </div>
+      )}
     </div>
   );
 }
