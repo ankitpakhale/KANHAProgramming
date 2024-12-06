@@ -64,13 +64,88 @@ export default function QuestionsDisplay({ qData }) {
       // add support for problem-solving questions or other types here
       default:
         return (
-          <li key={index} className="mb-4 p-3 border rounded bg-light">
-            <p className="fw-bold text-start mb-3">
-              {index + 1}. {question.question}
-            </p>
-            <p className="text-muted">
-              [Problem-solving question type not implemented]
-            </p>
+          <li key={index} className="mb-4 p-3 text-start border rounded">
+            <div className="row bg-info">
+              <div className="col d-flex">
+                <p className="fw-bold me-1">Question No:</p>
+                <p className="text-muted ms-1">{index + 1}.</p>
+              </div>
+
+              <div className="col d-flex">
+                <p className="fw-bold me-1">Question Type:</p>
+                <p className="text-success ms-1">
+                  {question.q_type == 'problem_solving' && 'Problem Solving'}
+                </p>
+              </div>
+            </div>
+
+            {/* problem description */}
+            <div className="my-2">
+              <p className="fw-bold">Problem Description:</p>
+              <p className="text-muted">{question.problem_description}</p>
+            </div>
+
+            {/* input format */}
+            <div className="my-2">
+              <p className="fw-bold">Input Format:</p>
+              <p className="text-muted">{question.input_format}</p>
+            </div>
+
+            {/* output format */}
+            <div className="my-2">
+              <p className="fw-bold">Output Format:</p>
+              <p className="text-muted">{question.output_format}</p>
+            </div>
+
+            {/* constraints */}
+            <div className="my-2">
+              <p className="fw-bold">Constraints:</p>
+              <p className="text-muted">{question.constraints}</p>
+            </div>
+
+            {/* examples section */}
+            {question.examples && question.examples.length > 0 && (
+              <div className="mt-3">
+                <p className="fw-bold mb-2">Examples:</p>
+                {question.examples.map((example, exampleIndex) => (
+                  <div key={exampleIndex} className="mb-2">
+                    <p className="text-muted mr-2 mb-0">
+                      <strong>Input:</strong> {example.input}
+                    </p>
+                    <p className="text-muted mb-0">
+                      <strong>Output:</strong> {example.output}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* edge cases section */}
+            {question.edge_cases && question.edge_cases.length > 0 && (
+              <div className="mt-3">
+                <p className="fw-bold mb-2">Edge Cases:</p>
+                {question.edge_cases.map((edgeCase, edgeCaseIndex) => (
+                  <div key={edgeCaseIndex} className="mb-2">
+                    <p className="text-muted mr-2 mb-0">
+                      <strong>Input:</strong> {edgeCase.input}
+                    </p>
+                    <p className="text-muted mb-0">
+                      <strong>Output:</strong> {edgeCase.output}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* problem to solve here */}
+            <div className="my-2">
+              <p className="fw-bold">Problem To Solve Here:</p>
+              <textarea
+                className="form-control"
+                rows="4"
+                placeholder="write your solution here..."
+              />
+            </div>
           </li>
         );
     }
