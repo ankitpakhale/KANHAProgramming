@@ -3,7 +3,7 @@ export const API_ENDPOINTS = {
   ANSWER_EVALUATION: 'answer-evaluation',
 };
 
-export const Q_DATA = {
+export const Q_DATA_MCQ = {
   status: true,
   payload: {
     easy: [
@@ -28,7 +28,7 @@ export const Q_DATA = {
   status_code: 200,
 };
 
-export const Q_DATA_MCQ = {
+export const Q_DATA = {
   status: true,
   payload: {
     easy: [],
