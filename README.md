@@ -3,7 +3,6 @@
 ### **Project Overview**
 
 **KANHA** is an innovative, AI-powered platform that delivers personalized programming assessments to users. The frontend of KANHA allows users to interact with the backend to receive customized question sets, submit their answers, and view detailed feedback based on their performance. The platform uses Natural Language Processing (NLP) and AI to generate personalized assessments, providing a unique experience for every user.
-
 ---
 
 ### **Core Features**
