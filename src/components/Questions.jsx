@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useQuestions } from '../context/QuestionsContext';
 import MCQQuestion from './MCQQuestion';
-import ProblemSolvingQuestions from './ProblemSolvingQuestions';
+import PSQQuestions from './PSQQuestions';
+import { useNavigate } from 'react-router-dom';
 
 export default function Questions() {
+  const navigate = useNavigate();
+
   const { questionsData, isLoading, error } = useQuestions();
 
   if (isLoading) {
@@ -18,6 +21,14 @@ export default function Questions() {
     );
   }
 
+  useEffect(() => {
+    console.info('!!!!!!!!!!!!!!!! questionsData useEffect');
+    if (questionsData == null || questionsData.length === 0) {
+      console.info('!!!!!!!!!!!!!!!! questionsData is empty, redirecting to /');
+      navigate('/');
+    }
+  }, [questionsData, navigate]);
+
   return (
     <div>
       <h3>Questions</h3>
@@ -30,7 +41,7 @@ export default function Questions() {
               {questionType === 'mcq' ? (
                 <MCQQuestion questionData={question} />
               ) : questionType === 'psq' ? (
-                <ProblemSolvingQuestions question={question} />
+                <PSQQuestions questionData={question} />
               ) : (
                 <div>Unknown question type</div>
               )}
