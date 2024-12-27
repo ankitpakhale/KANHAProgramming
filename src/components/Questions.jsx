@@ -30,18 +30,17 @@ export default function Questions() {
   }, [questionsData, navigate]);
 
   return (
-    <div>
-      <h3>Questions</h3>
-      <ul>
+    <div className="container my-3">
+      <ul className="m-0 p-0 list-inline">
         {questionsData.map((question, index) => {
-          const questionType = question.q_id.substring(0, 3); // Extract the first 3 characters of q_id
+          const questionType = question.q_id.substring(0, 3); // extract the first 3 characters of q_id
           return (
             <li key={index}>
               {/* Conditional Rendering based on q_id */}
               {questionType === 'mcq' ? (
-                <MCQQuestion questionData={question} />
+                <MCQQuestion questionData={question} num={index} />
               ) : questionType === 'psq' ? (
-                <PSQQuestions questionData={question} />
+                <PSQQuestions questionData={question} num={index} />
               ) : (
                 <div>Unknown question type</div>
               )}

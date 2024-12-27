@@ -1,0 +1,44 @@
+[
+     {
+          "iconClass": "fa-brands fa-python",
+          "title": "Python Development",
+          "description": "Experienced in crafting intuitive user interfaces with a keen eye for design aesthetics, ensuring seamless user experiences.",
+          "backgroundColor": "bg-prink"
+     },
+     {
+          "iconClass": "fa-brands fa-aws",
+          "title": "AWS",
+          "description": "Experienced in utilizing AWS services to deploy, manage, & scale applications, ensuring reliability & efficiency.",
+          "backgroundColor": "bg-catkrill"
+     },
+     {
+          "iconClass": "fa-light fa-network-wired",
+          "title": "System Design",
+          "description": "Proficient in designing scalable & efficient systems, ensuring optimal performance & reliability in application architecture.",
+          "backgroundColor": "bg-catkrill"
+     },
+     {
+          "iconClass": "fa-regular fa-robot",
+          "title": "Generative AI",
+          "description": "Experienced in developing and implementing generative models for creative applications, including text, image, and music generation.",
+          "backgroundColor": "bg-prink"
+     },
+     {
+          "iconClass": "fa-brands fa-react",
+          "title": "React JS",
+          "description": "Skilled in developing dynamic & interactive user interfaces using React JS, enhancing user engagement & experience.",
+          "backgroundColor": "bg-prink"
+     },
+     {
+          "iconClass": "fa-regular fa-grid-2",
+          "title": "Machine Learning",
+          "description": "Proficient in developing robust & scalable applications, leveraging Python, Django, & React JS for efficient development.",
+          "backgroundColor": "bg-catkrill"
+     },
+     {
+          "iconClass": "fa-regular fa-camera-retro",
+          "title": "Computer Vision",
+          "description": "Passionate about leveraging Computer Vision technologies for advanced image processing & analysis.",
+          "backgroundColor": "bg-catkrill"
+     }
+]
