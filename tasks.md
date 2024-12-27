@@ -1,6 +1,7 @@
 ### TODO
 
 - #### Tasklist 0
+- [ ] Add Proper CSS Styling to each component.
 
 ### BACKLOG
 
