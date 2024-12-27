@@ -1,0 +1,42 @@
+[
+     {
+          "id": "Three",
+          "question": "What technologies do you specialize in?",
+          "answer": "I specialize in full-stack development, with a focus on Python, AWS, React JS & Generative AI."
+     },
+     {
+          "id": "Four",
+          "question": "What projects have you worked on?",
+          "answer": "I have worked on various projects, including Large-Scale Automation, Self Analytical Processor & Data-Driven Applications etc."
+     },
+     {
+          "id": "Five",
+          "question": "How can I contact you?",
+          "answer": "You can contact me by email at [akp3067@gmail.com](akp3067@gmail.com), connect with me on [LinkedIn](https://www.linkedin.com/in/ankitpakhale), or by completing the contact form available on the [Contact Page](/contact)."
+     },
+     {
+          "id": "Six",
+          "question": "What is your approach to problem-solving?",
+          "answer": "I approach problem-solving by breaking down complex issues into smaller, manageable tasks, then methodically addressing each one using a combination of analytical thinking and creativity."
+     },
+     {
+          "id": "Seven",
+          "question": "How do you keep your skills up to date?",
+          "answer": "I continuously learn by taking online courses, attending webinars, and engaging in hands-on projects that challenge my existing knowledge."
+     },
+     {
+          "id": "Eight",
+          "question": "What motivates you to work in tech?",
+          "answer": "The fast-paced environment and the opportunity to create innovative solutions that can have a real-world impact motivate me to work in tech."
+     },
+     {
+          "id": "Nine",
+          "question": "Can you describe a challenging project you worked on?",
+          "answer": "I once worked on a project where I had to optimize the performance of a large-scale web application. Through rigorous testing and code refactoring, I was able to significantly reduce load times."
+     },
+     {
+          "id": "Ten",
+          "question": "How do you handle tight deadlines?",
+          "answer": "I prioritize tasks, maintain clear communication with my team, and stay focused to ensure that deadlines are met without compromising quality."
+     }
+]

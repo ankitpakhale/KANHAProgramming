@@ -5,7 +5,7 @@ export default function PSQQuestions({ questionData }) {
   const qData = questionData;
 
   return (
-    <div className="my-5 p-4 border rounded shadow-sm">
+    <div className="questionBox">
       <div className="mb-3">
         <p className="fw-bold mb-1 fs-6">Problem Description:</p>
         <p className="fs-6">{qData.problem_description}</p>

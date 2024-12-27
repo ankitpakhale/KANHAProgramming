@@ -247,3 +247,15 @@ p {
   width: 14px;
   height: 14px;
 }
+
+
+/* questionBox */
+.questionBox {
+  background-color: #dee2e6;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  box-shadow: 0 .125rem .25rem rgba(0, 0, 0, 0.075);
+}
