@@ -6,8 +6,7 @@ import { API_ENDPOINTS } from '../utils/constants';
 import { useQuestions } from '../context/QuestionsContext';
 
 export default function QuestionsForm() {
-  const { setQuestionsData, setIsLoading, setError, isLoading, error } =
-    useQuestions();
+  const { setQuestionsData, setIsLoading, setError } = useQuestions();
   const navigate = useNavigate();
   const [difficulty, setDifficulty] = useState(null);
   const [selectedLanguages, setSelectedLanguages] = useState([]);
@@ -69,7 +68,7 @@ export default function QuestionsForm() {
       );
 
       if (responseData.response && responseData.error === null) {
-        setQuestionsData(responseData.response.payload);
+        setQuestionsData(responseData.response);
         // Navigate to the /questions route after successful data fetch
         navigate('/questions');
       } else {
@@ -84,7 +83,6 @@ export default function QuestionsForm() {
 
   return (
     <div className="col-8 col-md-6 col-lg-4 mt-3 mx-auto">
-      <h2 className="heading">KANHA</h2>
       <form>
         <div className="mb-3 row">
           <label htmlFor="difficultyLevel" className="col-sm-4 col-form-label">

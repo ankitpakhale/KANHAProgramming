@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
-import QuestionsForm from './components/QuestionsForm';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { QuestionsProvider } from './context/QuestionsContext';
+import ActiveRoutes from './routes/ActiveRoutes';
 
 function App() {
   useEffect(() => {
@@ -69,22 +71,23 @@ function App() {
       cssFiles.forEach((css) => {
         const link = document.querySelector(
           `link[href="./src/assets/css/${css}"]`
-        ); // Corrected path
+        );
         link && link.parentNode.removeChild(link);
       });
       jsFiles.forEach((js) => {
         const script = document.querySelector(
           `script[src="./src/assets/js/${js}"]`
-        ); // Corrected path
+        );
         script && script.parentNode.removeChild(script);
       });
     };
   }, []);
   return (
-    <div className="d-flex flex-column justify-content-center align-items-center mt-5">
-      <h1 className="heading">Welcome to KANHA</h1>
-      <QuestionsForm />
-    </div>
+    <QuestionsProvider>
+      <Router>
+        <ActiveRoutes />
+      </Router>
+    </QuestionsProvider>
   );
 }
 
