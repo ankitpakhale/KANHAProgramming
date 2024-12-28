@@ -5,7 +5,7 @@ export default function MCQQuestion({ questionData, num }) {
   return (
     <div className="questionBox">
       <p className="questionNum">Question: {num + 1}</p>
-      <p className="fw-bold text-start mb-3">{questionData.question}</p>
+      <p className="fw-bold mb-3 qData">{questionData.question}</p>
       <ul className="m-0 p-0 list-inline">
         {questionData.options.map((option, index) => (
           <li key={index + 1} className="border rounded bg-light text-start">

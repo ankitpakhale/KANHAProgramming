@@ -304,6 +304,7 @@ p {
   margin-bottom: 10px;
   transition: background-color 0.3s, transform 0.2s;
   color: var(--text-muted-color);
+  cursor: pointer;
 }
 
 .questionBox ul li:hover {
@@ -317,6 +318,7 @@ p {
   color: var(--header-color);
   font-size: 1rem;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .questionBox .list-group-item {
@@ -329,4 +331,10 @@ p {
   color: var(--text-color);
   text-align: start;
   text-decoration: underline;
+  cursor: pointer;
+}
+
+.questionBox .qData {
+  cursor: pointer;
+  text-align: start;
 }
